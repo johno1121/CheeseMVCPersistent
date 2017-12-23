@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace CheeseMVC.ViewModels
 {
@@ -23,20 +22,22 @@ namespace CheeseMVC.ViewModels
         public int CategoryID { get; set; }
 
         public List<SelectListItem> Categories { get; set; }
+        public AddCheeseViewModel() { }
 
         public AddCheeseViewModel(IEnumerable<CheeseCategory> categories)
         {
-            Categories = new List<SelectListItem>();
-            foreach (CheeseCategory item in categories)
-            {
 
+            Categories = new List<SelectListItem>();
+            foreach (var category in categories)
+            {
                 Categories.Add(new SelectListItem
                 {
-                    Value = item.ID.ToString(),
-                    Text = item.Name
+                    Value = (category.ID).ToString(),
+                    Text = category.Name
                 });
-
             }
+
         }
+
     }
 }
